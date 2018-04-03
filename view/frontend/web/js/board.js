@@ -13,7 +13,7 @@ define(['uiComponent', 'ko', 'square'], function (Component, ko, Square) {
         },
         initialize: function () {
             this._super();
-            this.cells = this.squares.map(function (v, i) {
+            this.cells = [...this.squares.keys()].map(function (i) {
                 return new Square({
                     index: i,
                     provider: this.provider
