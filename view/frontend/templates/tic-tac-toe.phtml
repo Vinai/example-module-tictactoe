@@ -1,0 +1,26 @@
+<?php declare(strict_types=1);
+
+/** @var \Magento\Framework\View\Element\Template $block */
+
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "game": {
+                        "component": "game",
+                        "children": {
+                            "board": {
+                                "component": "board"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>
+<div id="tictactoe" data-bind="scope: 'game'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>

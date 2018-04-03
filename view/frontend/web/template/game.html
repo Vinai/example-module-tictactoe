@@ -1,0 +1,13 @@
+<div class="game">
+    <div class="game-board" data-bind="with: getChild('board')">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+    <div class="game-info">
+        <div data-bind="text: status()"></div>
+        <ol data-bind="foreach: moves">
+            <li>
+                <button data-bind="click: $parent.jumpTo, text: $parent.jumpToLabel($index())"></button>
+            </li>
+        </ol>
+    </div>
+</div>

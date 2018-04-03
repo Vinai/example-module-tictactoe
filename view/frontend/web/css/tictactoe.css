@@ -1,0 +1,50 @@
+#tictactoe {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+}
+
+#tictactoe ol, #tictactoe ul {
+    padding-left: 30px;
+}
+
+#tictactoe .board-row:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+#tictactoe .status {
+    margin-bottom: 10px;
+}
+
+#tictactoe .square {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 34px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 34px;
+}
+
+#tictactoe .square:focus {
+    outline: none;
+}
+
+#tictactoe .kbd-navigation .square:focus {
+    background: #ddd;
+}
+
+#tictactoe .game {
+    display: flex;
+    flex-direction: row;
+}
+
+#tictactoe .game-info {
+    margin-left: 20px;
+}
