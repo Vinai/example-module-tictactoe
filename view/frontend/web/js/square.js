@@ -3,18 +3,7 @@ define(['uiComponent'], function (Component) {
 
     return Component.extend({
         defaults: {
-            template: 'VinaiKopp_TicTacToe/square',
-            provider: 'game',
-            tracks: {
-                xIsNext: true
-            },
-            links: {
-                squares: '${ $.provider }:squares'
-            },
-            imports: {
-                xIsNext: '${ $.provider }:xIsNext',
-                winner: '${ $.provider }:winner'
-            }
+            template: 'VinaiKopp_TicTacToe/square'
         },
         initConfig: function (options) {
             this._super(options);
@@ -22,16 +11,16 @@ define(['uiComponent'], function (Component) {
             this.index = 'square' + options.index;
         },
         square: function () {
-            return this.squares[this.squareIndex];
+            return this.game.squares[this.squareIndex];
         },
-        squareValue: function () {
+        value: function () {
             const square = this.square();
             return square();
         },
         handleClick: function () {
             const square = this.square();
-            if ('' === square() && !this.winner) {
-                square(this.xIsNext ? 'X' : 'O');
+            if ('' === square() && !this.game.winner) {
+                square(this.game.xIsNext ? 'X' : 'O');
             }
         }
     });

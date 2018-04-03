@@ -3,23 +3,14 @@ define(['uiComponent', 'ko', 'square'], function (Component, ko, Square) {
     
     return Component.extend({
         defaults: {
-            template: 'VinaiKopp_TicTacToe/board',
-            provider: 'game',
-            imports: {
-                squares: '${ $.provider }:squares'
-            },
-            tracks: {
-                squares: true
-            }
+            template: 'VinaiKopp_TicTacToe/board'
         },
-        initialize: function () {
-            this._super();
-            this.cells = this.squares.map(function (v, i) {
-                return new Square({index: i});
-            })
-        },
-        square: function(i) {
-            return this.cells[i];
+        cells: [],
+        initContainer: function (game) {
+            this.cells = game.squares.map(function (v, i) {
+                return new Square({index: i, game: game});
+            });
+            return this._super(game);
         }
     });
 });
