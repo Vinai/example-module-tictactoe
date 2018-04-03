@@ -4,7 +4,6 @@ define(['uiComponent'], function (Component) {
     return Component.extend({
         defaults: {
             template: 'VinaiKopp_TicTacToe/square',
-            provider: 'game',
             tracks: {
                 xIsNext: true
             },
@@ -24,7 +23,7 @@ define(['uiComponent'], function (Component) {
         square: function () {
             return this.squares[this.squareIndex];
         },
-        squareValue: function () {
+        value: function () {
             const square = this.square();
             return square();
         },

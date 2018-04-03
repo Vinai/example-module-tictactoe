@@ -4,7 +4,6 @@ define(['uiComponent', 'ko', 'square'], function (Component, ko, Square) {
     return Component.extend({
         defaults: {
             template: 'VinaiKopp_TicTacToe/board',
-            provider: 'game',
             imports: {
                 squares: '${ $.provider }:squares'
             },
@@ -15,11 +14,11 @@ define(['uiComponent', 'ko', 'square'], function (Component, ko, Square) {
         initialize: function () {
             this._super();
             this.cells = this.squares.map(function (v, i) {
-                return new Square({index: i});
-            })
-        },
-        square: function(i) {
-            return this.cells[i];
+                return new Square({
+                    index: i,
+                    provider: this.provider
+                });
+            }.bind(this))
         }
     });
 });
