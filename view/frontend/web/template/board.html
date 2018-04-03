@@ -1,13 +1,13 @@
 <div>
     <each args="{data: [0, 1, 2], as: 'row'}">
         <div class="board-row">
-            <with args="$parent.square(0 + row * 3)">
+            <with args="$parent.cells[0 + row * 3]">
                 <!-- ko template: getTemplate() --><!-- /ko -->
             </with>
-            <with args="$parent.square(1 + row * 3)">
+            <with args="$parent.cells[1 + row * 3]">
                 <!-- ko template: getTemplate() --><!-- /ko -->
             </with>
-            <with args="$parent.square(2 + row * 3)">
+            <with args="$parent.cells[2 + row * 3]">
                 <!-- ko template: getTemplate() --><!-- /ko -->
             </with>
         </div>
