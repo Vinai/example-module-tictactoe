@@ -4,7 +4,7 @@
     </div>
     <div class="game-info">
         <div data-bind="text: status()"></div>
-        <ol data-bind="foreach: moves">
+        <ol data-bind="foreach: moves()">
             <li>
                 <button data-bind="click: $parent.jumpTo, text: $parent.jumpToLabel($index())"></button>
             </li>

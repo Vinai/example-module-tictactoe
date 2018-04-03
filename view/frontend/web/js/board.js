@@ -1,4 +1,4 @@
-define(['uiComponent', 'ko', 'square'], function (Component, ko, Square) {
+define(['uiComponent', 'ticTacToeState', 'square'], function (Component, state, Square) {
     'use strict';
     
     return Component.extend({
@@ -6,11 +6,11 @@ define(['uiComponent', 'ko', 'square'], function (Component, ko, Square) {
             template: 'VinaiKopp_TicTacToe/board'
         },
         cells: [],
-        initContainer: function (game) {
-            this.cells = game.squares.map(function (v, i) {
-                return new Square({index: i, game: game});
+        initialize: function () {
+            this.cells = [...state.squares.keys()].map(function (i) {
+                return new Square({index: i});
             });
-            return this._super(game);
+            return this._super();
         }
     });
 });

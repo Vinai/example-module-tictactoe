@@ -1,4 +1,4 @@
-define(['uiComponent'], function (Component) {
+define(['uiComponent', 'ticTacToeState'], function (Component, state) {
     'use strict';
 
     return Component.extend({
@@ -10,18 +10,13 @@ define(['uiComponent'], function (Component) {
             this.squareIndex = options.index;
             this.index = 'square' + options.index;
         },
-        square: function () {
-            return this.game.squares[this.squareIndex];
+        handleClick: function () {
+            if ('' === this.value() && !state.winner) {
+                state.squares[this.squareIndex](state.xIsNext ? 'X' : 'O');
+            }
         },
         value: function () {
-            const square = this.square();
-            return square();
-        },
-        handleClick: function () {
-            const square = this.square();
-            if ('' === square() && !this.game.winner) {
-                square(this.game.xIsNext ? 'X' : 'O');
-            }
+            return state.squares[this.squareIndex]();
         }
     });
 });

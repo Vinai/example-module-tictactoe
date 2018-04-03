@@ -1,4 +1,4 @@
-define(['uiComponent', 'ko'], function (Component, ko) {
+define(['uiComponent', 'ko', 'ticTacToeState'], function (Component, ko, state) {
     'use strict';
 
     function calculateWinner(squares) {
@@ -25,58 +25,49 @@ define(['uiComponent', 'ko'], function (Component, ko) {
 
     function addToHistory() {
         if (! timeTravelInProgress) {
-            this.moves.push({
-                squares: this.squares.map(v => v()),
-                xIsNext: this.xIsNext,
-                parent: this
+            state.moves.push({
+                squares: state.squares.map(v => v()),
+                xIsNext: state.xIsNext
             });
         }
     }
 
     function handleValueChange() {
         if (! timeTravelInProgress) {
-            this.xIsNext = !this.xIsNext;
+            state.xIsNext = !state.xIsNext;
         }
-        this.winner = calculateWinner(this.squares.map(v => v()));
+        state.winner = calculateWinner(state.squares.map(v => v()));
     }
 
     return Component.extend({
         defaults: {
-            template: 'VinaiKopp_TicTacToe/game',
-            moves: [],
-            squares: [...Array(9).keys()].map(x => ko.observable('')),
-            xIsNext: true,
-            winner: false,
-            tracks: {
-                moves: true,
-                squares: true,
-                xIsNext: true,
-                winner: true
-            }
+            template: 'VinaiKopp_TicTacToe/game'
         },
         initialize: function () {
             this._super();
-            this.squares.forEach(square => {
-                square.subscribe(addToHistory, this, 'beforeChange');
-                square.subscribe(handleValueChange, this);
+            state.squares.forEach((square) => {
+                square.subscribe(addToHistory, null, 'beforeChange');
+                square.subscribe(handleValueChange);
             });
         },
         status: function () {
-            if (this.winner) {
-                return 'Winner ' + this.winner;
+            if (state.winner) {
+                return 'Winner ' + state.winner;
             } else {
-                return 'Next player: ' + (this.xIsNext ? 'X' : 'O');
+                return 'Next player: ' + (state.xIsNext ? 'X' : 'O');
             }
+        },
+        moves: function () {
+            return state.moves;
         },
         jumpToLabel: function (moveNumber) {
             return moveNumber === 0 ? "Go to start" : "Go to move " + moveNumber;
         },
         jumpTo: function (move) {
-            const game = move.parent;
             timeTravelInProgress = true;
-            move.squares.forEach((square, i) => game.squares[i](square));
-            game.xIsNext = move.xIsNext;
-            game.moves = game.moves.slice(0, game.moves.indexOf(move));
+            move.squares.forEach((square, i) => state.squares[i](square));
+            state.xIsNext = move.xIsNext;
+            state.moves = state.moves.slice(0, state.moves.indexOf(move));
             timeTravelInProgress = false;
         }
     });
