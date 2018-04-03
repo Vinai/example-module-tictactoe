@@ -15,13 +15,8 @@ define(['uiComponent'], function (Component) {
                 winner: '${ $.provider }:winner'
             }
         },
-        initConfig: function (options) {
-            this._super(options);
-            this.squareIndex = options.index;
-            this.index = 'square' + options.index;
-        },
         square: function () {
-            return this.squares[this.squareIndex];
+            return this.squares[this.index];
         },
         value: function () {
             const square = this.square();
