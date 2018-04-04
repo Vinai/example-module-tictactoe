@@ -4,9 +4,6 @@ define(['uiComponent'], function (Component) {
     return Component.extend({
         defaults: {
             template: 'VinaiKopp_TicTacToe/square',
-            tracks: {
-                xIsNext: true
-            },
             links: {
                 squares: '${ $.provider }:squares'
             },
