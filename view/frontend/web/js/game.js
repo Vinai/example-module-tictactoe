@@ -44,7 +44,7 @@ define(['uiComponent', 'ko'], function (Component, ko) {
         defaults: {
             template: 'VinaiKopp_TicTacToe/game',
             moves: [],
-            squares: [...Array(9).keys()].map(x => ko.observable('')),
+            squares: [...Array(9).keys()].map(() => ko.observable('')),
             xIsNext: true,
             winner: false,
             tracks: {
