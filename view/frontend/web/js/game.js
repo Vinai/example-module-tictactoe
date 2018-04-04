@@ -25,7 +25,7 @@ define(['uiComponent', 'ko'], function (Component, ko) {
 
     const state = ko.track({
         moves: [],
-        squares: [...Array(9).keys()].map(x => ko.observable('')),
+        squares: [...Array(9).keys()].map(() => ko.observable('')),
         xIsNext: true,
         winner: false
     });
